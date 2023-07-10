@@ -1,41 +1,33 @@
-[中文README](./README.zh.md)
+This is a [Plasmo extension](https://docs.plasmo.com/) project bootstrapped with [`plasmo init`](https://www.npmjs.com/package/plasmo).
 
-A web browser extenstion based on [BetterOneTab](https://github.com/cnwangjie/better-onetab/blob/master/README.md)
+## Getting Started
 
-### Features
+First, run the development server:
 
-Send a feature request.
+```bash
+pnpm dev
+# or
+npm run dev
+```
 
- - [x] Basic feature of OneTab
- - [x] Popup page with simple list
- - [x] Pin tab list
- - [x] Keyboard shortcuts
- - [x] Options
- - [x] Drag and drop re-ordering
- - [x] Data & Options sync
- - [x] Import & Export
- - [x] Add stored tabs to history
- - [x] I18N support (only English & Chinese currently)
+Open your browser and load the appropriate development build. For example, if you are developing for the chrome browser, using manifest v3, use: `build/chrome-mv3-dev`.
 
-### Installation
+You can start editing the popup by modifying `popup.tsx`. It should auto-update as you make changes. To add an options page, simply add a `options.tsx` file to the root of the project, with a react component default exported. Likewise to add a content page, add a `content.ts` file to the root of the project, importing some module and do some logic, then reload the extension on your browser.
 
-Install from Google Extension Store
+For further guidance, [visit our Documentation](https://docs.plasmo.com/)
 
-Download the released .crx file in releases page and drag it to chrome extensions page.
+## Making production build
 
-### Development
+Run the following:
 
-0. Clone this repo
-0. Install dependencies (use `yarn` command)
-0. Auto reload (use `yarn dev` command)
-0. Go to Google Extension Store in Developer Mode Click LOAD UNPACKED button and select ./dist path
-0. Build (use `yarn build` command)
+```bash
+pnpm build
+# or
+npm run build
+```
 
-- UI: Vue.js (see src/app)
-- Backend: Node.js (see src/common)
-- Database: MongoDB (see data/)
-- CI/CD: Docker + CircleCI
+This should create a production bundle for your extension, ready to be zipped and published to the stores.
 
-### License
+## Submit to the webstores
 
-MIT LICENSE
+The easiest way to deploy your Plasmo extension is to use the built-in [bpp](https://bpp.browser.market) GitHub action. Prior to using this action however, make sure to build your extension and upload the first version to the store to establish the basic credentials. Then, simply follow [this setup instruction](https://docs.plasmo.com/framework/workflows/submit) and you should be on your way for automated submission!
