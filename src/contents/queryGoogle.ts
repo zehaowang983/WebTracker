@@ -8,7 +8,8 @@ export const config: PlasmoCSConfig = {
 
 async function getCurrentTab() {
   try {
-    const url = await sendToBackground({ name: "getCurrentTab" });
+    // const url = await sendToBackground({ name: "getCurrentTab" });
+    const url = window.location.href;
     const urlParams = new URLSearchParams(url);
     const query = urlParams.get('oq');
     console.log(query);
