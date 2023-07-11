@@ -1,0 +1,53 @@
+{
+  "icons": {
+    "16": "./gen-assets/icon16.plasmo.png",
+    "32": "./gen-assets/icon32.plasmo.png",
+    "48": "./gen-assets/icon48.plasmo.png",
+    "64": "./gen-assets/icon64.plasmo.png",
+    "128": "./gen-assets/icon128.plasmo.png"
+  },
+  "manifest_version": 3,
+  "action": {
+    "default_icon": {
+      "16": "./gen-assets/icon16.plasmo.png",
+      "32": "./gen-assets/icon32.plasmo.png",
+      "48": "./gen-assets/icon48.plasmo.png",
+      "64": "./gen-assets/icon64.plasmo.png",
+      "128": "./gen-assets/icon128.plasmo.png"
+    },
+    "default_popup": "./popup.html"
+  },
+  "version": "0.0.1",
+  "author": "hansen",
+  "name": "DEV | Web tracker",
+  "description": "A basic Plasmo extension.",
+  "background": {
+    "service_worker": "./static/background/index.ts"
+  },
+  "chrome_url_overrides": {
+    "newtab": "./newtab.html"
+  },
+  "permissions": [
+    "storage",
+    "identity"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.google.com/*"
+      ],
+      "js": [
+        "../src/contents/query.ts"
+      ]
+    }
+  ],
+  "host_permissions": [
+    "https://*/*"
+  ],
+  "oauth2": {
+    "scopes": [
+      "https://www.googleapis.com/auth/userinfo.email",
+      "https://www.googleapis.com/auth/userinfo.profile"
+    ]
+  }
+}

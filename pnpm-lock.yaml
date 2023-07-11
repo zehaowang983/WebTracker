@@ -25,6 +25,9 @@ dependencies:
     version: registry.npmmirror.com/react-dom@18.2.0(react@18.2.0)
 
 devDependencies:
+  '@babel/core':
+    specifier: ^7.12.0
+    version: registry.npmmirror.com/@babel/core@7.22.6
   '@plasmohq/prettier-plugin-sort-imports':
     specifier: 3.6.4
     version: registry.npmmirror.com/@plasmohq/prettier-plugin-sort-imports@3.6.4(prettier@2.8.8)
@@ -120,7 +123,6 @@ packages:
       json5: registry.npmmirror.com/json5@2.2.3
     transitivePeerDependencies:
       - supports-color
-    dev: false
 
   registry.npmmirror.com/@babel/generator@7.21.4:
     resolution: {integrity: sha512-NieM3pVIYW2SwGzKoqfPrQsf4xGs9M9AIG3ThppsSRmO+m7eQhmI6amajKMUeIO37wFfsvnvcxQFx6x6iqxDnA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@babel/generator/-/generator-7.21.4.tgz}
@@ -195,7 +197,6 @@ packages:
       '@nicolo-ribaudo/semver-v6': registry.npmmirror.com/@nicolo-ribaudo/semver-v6@6.3.3
       browserslist: registry.npmmirror.com/browserslist@4.21.9
       lru-cache: registry.npmmirror.com/lru-cache@5.1.1
-    dev: false
 
   registry.npmmirror.com/@babel/helper-create-class-features-plugin@7.22.6(@babel/core@7.22.6):
     resolution: {integrity: sha512-iwdzgtSiBxF6ni6mzVnZCF3xt5qE6cEA0J7nFt8QOAWZ0zjCFceEgpn3vtb2V7WFR6QzP2jmIFOHMTRo7eNJjQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@babel/helper-create-class-features-plugin/-/helper-create-class-features-plugin-7.22.6.tgz}
