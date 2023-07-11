@@ -10,13 +10,12 @@ const handler: PlasmoMessaging.MessageHandler = async (req, res) => {
   
   try {
     const docData = {
-      type: "query",
+      type: "quote",
       openat:  Timestamp.fromDate(new Date()),
       url: req.body.url,
-      query: req.body.query
+      quoted: req.body.quoted
     };
-    
-    const docRef = await addDoc(collection(firestore, "query_actions"), docData);
+    const docRef = await addDoc(collection(firestore, "quote_actions"), docData);
     console.log("Document written with ID: ", docRef.id)
     res.send("Document written with ID: " + docRef.id)
   }

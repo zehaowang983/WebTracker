@@ -17,7 +17,8 @@ async function getCurrentTab() {
     setQueryActionPort.postMessage({
       body: {
         url: url, 
-        query:query}
+        query:query
+      }
     })
     // const resp2 = await sendToBackground({ name: "getQueryAction", body: {url: url, query:query}});
     setQueryActionPort.onMessage.addListener(function(res) {
