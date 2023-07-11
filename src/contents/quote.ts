@@ -25,7 +25,6 @@ async function getSelectedContent() {
         quoted: selectedText
       }
     })
-    // const resp2 = await sendToBackground({ name: "getQueryAction", body: {url: url, query:query}});
     setQuoteActionPort.onMessage.addListener(function(res) {
       console.log(res)
     });

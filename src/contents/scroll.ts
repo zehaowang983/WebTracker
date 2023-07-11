@@ -6,20 +6,33 @@ export const config: PlasmoCSConfig = {
     world: "MAIN"
 }
 
+let lastScrollPosition = window.scrollY;
+
 async function getScrollAction() {
   try {
     // const url = await sendToBackground({ name: "getCurrentTab" });
 
+    const currentScrollPosition = window.scrollY;
+    let scrollDirection;  
+
+    if (currentScrollPosition > lastScrollPosition) {
+        scrollDirection = "down";
+    } else if (currentScrollPosition < lastScrollPosition) {
+        scrollDirection = "up";
+    }
+
+    console.log("Scroll direction:", scrollDirection);
+
+    lastScrollPosition = currentScrollPosition;
     const setScrollActionPort = await getPort("setScrollAction");
     setScrollActionPort.postMessage({
-      body: {
-        url: "111", 
-        directions: "222"
-      }
+        body: {
+            url: "111", 
+            directions: scrollDirection
+        }
     })
-    // const resp2 = await sendToBackground({ name: "getQueryAction", body: {url: url, query:query}});
     setScrollActionPort.onMessage.addListener(function(res) {
-      console.log(res)
+        console.log(res)
     });
     
   }
