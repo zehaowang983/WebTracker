@@ -4,7 +4,8 @@ import {
   browserLocalPersistence,
   onAuthStateChanged,
   setPersistence,
-  signInWithCredential
+  signInWithCredential,
+  signOut
 } from "firebase/auth"
 import { getFirestore } from "firebase/firestore"
 import { useEffect, useMemo, useState } from "react"
@@ -22,7 +23,10 @@ export const useFirebase = () => {
   const onLogout = async () => {
     setIsLoading(true)
     if (user) {
-      await auth.signOut()
+      chrome.identity.clearAllCachedAuthTokens(function (){
+        console.error("clear cached token")
+      });
+      await signOut(auth)
     }
   }
 
@@ -37,7 +41,7 @@ export const useFirebase = () => {
       if (token) {
         const credential = GoogleAuthProvider.credential(null, token)
         try {
-          await signInWithCredential(auth, credential)
+          const userCredentail = await signInWithCredential(auth, credential)
         } catch (e) {
           console.error("Could not log in. ", e)
         }

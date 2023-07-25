@@ -10,21 +10,41 @@
     "package": "plasmo package"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.14.0",
+    "@mui/material": "^5.14.0",
     "@plasmohq/messaging": "^0.5.0",
     "@plasmohq/storage": "^1.6.2",
     "firebase": "^10.0.0",
     "plasmo": "0.77.5",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-router-dom": "^6.14.2",
+    "webextension-polyfill": "^0.10.0",
+    "@fortawesome/fontawesome-svg-core": "^6.1.2",
+    "@fortawesome/free-brands-svg-icons": "^6.2.0",
+    "@fortawesome/free-solid-svg-icons": "^6.1.2",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.3.0",
+    "@testing-library/user-event": "^13.5.0",
+    "chart.js": "^4.3.0",
+    "framer-motion": "^10.12.12",
+    "react-chartjs-2": "^5.2.0",
+    "react-scripts": "5.0.1",
+    "web-vitals": "^2.1.4"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.0",
     "@plasmohq/prettier-plugin-sort-imports": "3.6.4",
     "@types/chrome": "0.0.237",
     "@types/node": "20.2.4",
     "@types/react": "18.2.7",
     "@types/react-dom": "18.2.4",
+    "autoprefixer": "^10.4.14",
+    "postcss": "^8.1.0",
     "prettier": "2.8.8",
+    "tailwindcss": "^3.3.3",
     "typescript": "5.0.4"
   },
   "manifest": {
@@ -33,7 +53,8 @@
       "https://*/*"
     ],
     "permissions": [
-      "identity"
+      "identity",
+      "contextMenus"
     ],
     "oauth2": {
       "client_id": "$PLASMO_PUBLIC_FIREBASE_CLIENT_ID",
@@ -42,5 +63,8 @@
         "https://www.googleapis.com/auth/userinfo.profile"
       ]
     }
+  },
+  "browser_action": {
+    "default_icon": "icon.png"
   }
 }

@@ -2,7 +2,9 @@ node_modules/**/*
 yarn-error.log
 dist
 dist.zip
+build
 .sonar*
 .scanner*
 stats.json
 .DS_Store
+.plasmo
