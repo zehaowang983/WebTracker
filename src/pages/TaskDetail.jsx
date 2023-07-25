@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPencil, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faPencil, faTrash, faPlayCircle, faStopCircle } from "@fortawesome/free-solid-svg-icons";
 import { getPort } from "@plasmohq/messaging/port";
 import { secondsToDate } from "../utils/timeUtils"; // Import the time conversion function
 
@@ -24,6 +24,18 @@ function TaskDetail() {
     });
   }, [taskId]);
 
+  const handleStartRecording = () => {
+    // Your logic to start recording goes here
+    // For example, you can set a state variable to true or call a function to start recording.
+    setIsRecording(true);
+  };
+  
+  const handleStopRecording = () => {
+    // Your logic to stop recording goes here
+    // For example, you can set a state variable to false or call a function to stop recording.
+    setIsRecording(false);
+  };
+  
   if (loading) {
     return (
       <div className="h-screen flex items-center justify-center">
@@ -42,7 +54,7 @@ function TaskDetail() {
         <div className="mainCard">
           <div className="border w-full border-gray-200 bg-white py-4 px-6 rounded-md">
           {isRecording ? (
-            <div className="bg-emerald-100 border-l-4 border-emerald-500 text-emerald-700 p-4 mb-4">
+            <div className="bg-blue-100 border-l-4 border-blue-500 text-blue-700 p-4 mb-4">
               Action being recording!
             </div>
           ) : null}
@@ -95,7 +107,7 @@ function TaskDetail() {
                   rows="10"
                 />
               </div>
-              {/* <div className="mb-6">
+              <div className="mb-6">
                 <label
                   htmlFor="taskTime"
                   className="block text-gray-700 text-lg font-bold mb-2"
@@ -105,10 +117,28 @@ function TaskDetail() {
                 <p className="font-normal text-lg text-gray-700">
                   {secondsToDate(taskData.created_at.seconds)}
                 </p>
-              </div> */}
-              <div className="mb-6 flex items-center justify-between">
+              </div>
+              <div className="mb-6 flex items-center justify-end">
+                <div className="flex gap-4">
+                {!isRecording ? (
+                  <button
+                    onClick={handleStartRecording}
+                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                  >
+                    <span className="mr-2 md:uppercase">Start Recording</span>
+                    <FontAwesomeIcon icon={faPlayCircle} />
+                  </button>
+                ): ( 
+                  <button
+                    onClick={handleStopRecording}
+                    className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                  >
+                    <span className="mr-2 md:uppercase">Stop Recording</span>
+                    <FontAwesomeIcon icon={faStopCircle} />
+                  </button>
+                )}
                 <Link
-                  to={`/edit/${taskId}`} // Replace with the appropriate edit route
+                  to={`/edit/${taskId}`} 
                   className="bg-emerald-500 hover:bg-emerald-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                 >
                   <span className="mr-2 md:uppercase">
@@ -117,7 +147,7 @@ function TaskDetail() {
                   <FontAwesomeIcon icon={faPencil} />
                 </Link>
                 <button
-                  onClick={() => handleDelete(taskId)} // Replace with the appropriate delete function
+                  onClick={() => handleDelete(taskId)} 
                   className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                 >
                   <span className="mr-2 md:uppercase">
@@ -125,6 +155,7 @@ function TaskDetail() {
                   </span>
                   <FontAwesomeIcon icon={faTrash} />
                 </button>
+                </div>
               </div>
             </div>
           </div>
