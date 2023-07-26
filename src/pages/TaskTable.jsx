@@ -1,13 +1,14 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Datatables from "../components/Datatables/Table";
 import TableCell from "../components/Datatables/TableCell";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPencil, faRemove, faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
+import { faPencil, faRemove, faPlayCircle } from "@fortawesome/free-solid-svg-icons";
 import { secondsToDate } from "../utils/timeUtils"; // Import the time conversion function
 
 function TaskTable({ loading, dataHeader, data, handleDelete, handleSort, field, direction}) {
   const [expandedRows, setExpandedRows] = useState([]);
+  const [recordingTaskId, setRecordingTaskId] = useState(null);
 
   // Function to handle expanding/collapsing rows
   const toggleRow = (index) => {
@@ -20,6 +21,13 @@ function TaskTable({ loading, dataHeader, data, handleDelete, handleSort, field,
     }
     setExpandedRows(newRow);
   };
+
+  useEffect(() => {
+    const recordingTaskId = localStorage.getItem("recordingTaskId");
+    if (recordingTaskId) {
+      setRecordingTaskId(recordingTaskId);
+    }
+  }, []);
   
   return (
     <Datatables loading={loading} dataHeader={dataHeader} handleSort={handleSort} field={field} direction={direction}>
@@ -54,6 +62,9 @@ function TaskTable({ loading, dataHeader, data, handleDelete, handleSort, field,
           </TableCell>
           
           <TableCell dataLabel="Operation" showLabel={true}>
+            {recordingTaskId == task.id? (
+              <FontAwesomeIcon icon={faPlayCircle} />
+            ): null}
             {/* You can add edit and delete buttons here */}
             {/* Replace the link paths with the actual routes for edit and delete */}
             <Link

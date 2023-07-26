@@ -12,6 +12,10 @@ function TaskDetail() {
   const [isRecording, setIsRecording] = useState(null);
 
   useEffect(() => {
+    const recordingTaskId = localStorage.getItem("recordingTaskId");
+    if(recordingTaskId && recordingTaskId == taskId){
+      setIsRecording(true);
+    } 
     const getTaskDetailPort = getPort("getTaskDetail");
     getTaskDetailPort.postMessage({
       body: {
@@ -24,15 +28,21 @@ function TaskDetail() {
     });
   }, [taskId]);
 
-  const handleStartRecording = () => {
+  const handleStartRecording = (taskId) => {
     // Your logic to start recording goes here
     // For example, you can set a state variable to true or call a function to start recording.
+    const recordingTaskId = localStorage.getItem("recordingTaskId");
+    if(recordingTaskId){
+      return;
+    } 
+    localStorage.setItem("recordingTaskId", taskId);
     setIsRecording(true);
   };
   
   const handleStopRecording = () => {
     // Your logic to stop recording goes here
     // For example, you can set a state variable to false or call a function to stop recording.
+    localStorage.removeItem("recordingTaskId");
     setIsRecording(false);
   };
   
@@ -47,6 +57,10 @@ function TaskDetail() {
   if (!taskData) {
     return <p>Task not found</p>;
   }
+
+  const handleDelete = (taskId) => {
+
+  };
 
   return (
     <>
@@ -122,7 +136,7 @@ function TaskDetail() {
                 <div className="flex gap-4">
                 {!isRecording ? (
                   <button
-                    onClick={handleStartRecording}
+                    onClick={() => handleStartRecording(taskData.id)} 
                     className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                   >
                     <span className="mr-2 md:uppercase">Start Recording</span>
@@ -147,7 +161,7 @@ function TaskDetail() {
                   <FontAwesomeIcon icon={faPencil} />
                 </Link>
                 <button
-                  onClick={() => handleDelete(taskId)} 
+                  onClick={() => handleDelete(taskData.id)} 
                   className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                 >
                   <span className="mr-2 md:uppercase">
