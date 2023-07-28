@@ -10,8 +10,7 @@ let lastScrollPosition = window.scrollY;
 
 async function getScrollAction() {
   try {
-    // const url = await sendToBackground({ name: "getCurrentTab" });
-
+    const url = window.location.href;
     const currentScrollPosition = window.scrollY;
     let scrollDirection;  
 
@@ -27,7 +26,7 @@ async function getScrollAction() {
     const setScrollActionPort = await getPort("setScrollAction");
     setScrollActionPort.postMessage({
         body: {
-            url: "111", 
+            url: url, 
             directions: scrollDirection
         }
     })

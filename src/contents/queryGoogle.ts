@@ -8,7 +8,6 @@ export const config: PlasmoCSConfig = {
 
 async function getCurrentTab() {
   try {
-    // const url = await sendToBackground({ name: "getCurrentTab" });
     const url = window.location.href;
     const urlParams = new URLSearchParams(url);
     const query = urlParams.get('oq');
@@ -21,7 +20,6 @@ async function getCurrentTab() {
         query:query
       }
     })
-    // const resp2 = await sendToBackground({ name: "getQueryAction", body: {url: url, query:query}});
     setQueryActionPort.onMessage.addListener(function(res) {
       console.log(res)
     });

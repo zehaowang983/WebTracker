@@ -1,6 +1,6 @@
 import { getLayout } from "@plasmo-static-common/react"
 // @ts-ignore
-import * as Component from "../../src/newtab.tsx"
+import * as Component from "../../src/newtab/index.tsx"
 import React from "react"
 import { createRoot } from "react-dom/client"
 

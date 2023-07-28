@@ -9,11 +9,8 @@ export const config: PlasmoCSConfig = {
 
 async function getSelectedContent() {
   try {
-    // const url = await sendToBackground({ name: "getCurrentTab" });
-    
-    
+    const url = window.location.href;
     const selectedText = window.getSelection().toString();
-    // Send the selected text to the background script or perform any desired actions
     if (selectedText && selectedText.length != 0) {
         console.log("Selected text:", selectedText);
     }
@@ -21,7 +18,7 @@ async function getSelectedContent() {
     const setQuoteActionPort = await getPort("setQuoteAction");
     setQuoteActionPort.postMessage({
       body: {
-        url: "111", 
+        url: url, 
         quoted: selectedText
       }
     })

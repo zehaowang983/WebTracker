@@ -24,20 +24,34 @@
   "background": {
     "service_worker": "./static/background/index.ts"
   },
+  "options_ui": {
+    "page": "./options.html",
+    "open_in_tab": true
+  },
   "chrome_url_overrides": {
     "newtab": "./newtab.html"
   },
   "permissions": [
     "storage",
-    "identity"
+    "scripting",
+    "identity",
+    "contextMenus"
   ],
   "content_scripts": [
+    {
+      "matches": [
+        "https://chat.openai.com/*"
+      ],
+      "js": [
+        "../src/contents/askAI.ts"
+      ]
+    },
     {
       "matches": [
         "https://www.google.com/*"
       ],
       "js": [
-        "../src/contents/query.ts"
+        "../src/contents/queryGoogle.ts"
       ]
     }
   ],

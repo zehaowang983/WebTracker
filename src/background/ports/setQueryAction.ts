@@ -17,7 +17,7 @@ const handler: PlasmoMessaging.MessageHandler = async (req, res) => {
     };
     
     const docRef = await addDoc(collection(firestore, "query_actions"), docData);
-    console.log("Document written with ID: ", docRef.id)
+    console.log("Document written with ID: ", docRef.id)  
     res.send("Document written with ID: " + docRef.id)
   }
   catch (error) {
